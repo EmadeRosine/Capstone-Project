@@ -70,5 +70,9 @@ public class Player {
     public void increaseGold(int sellPrice) {
     }
 
+    public String getName() {
+        return name;
+    }
+
     // Other getters and setters
 }
