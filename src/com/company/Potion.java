@@ -1,14 +1,16 @@
 package com.company;
 
 public class Potion extends Item {
-    private double healthIncreasePercentage;
+    private int healthIncreasePercentage;
 
-    public Potion(String name, String type,int effect) {
-        super(name,type,effect);
+    public Potion(String name, String type, int effect, int level, int price, int healthIncreasePercentage) {
+        super(name, type, effect, level, price);
         this.healthIncreasePercentage = healthIncreasePercentage;
     }
 
-    //Getters and setters for all variables
+    public void setHealthIncreasePercentage(int healthIncreasePercentage) {
+        this.healthIncreasePercentage = healthIncreasePercentage;
+    }
 
 
     public double getHealthIncreasePercentage() {

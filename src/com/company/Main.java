@@ -7,6 +7,7 @@ class Main {
         public static void main(String[] args) {
             boolean player_is = true;
             boolean choose_destination = true;
+            Inventory inventory;
             while(player_is)
             {
                 System.out.println("Welcome Adventurer\n Enter your name to start the quest:");
@@ -14,6 +15,7 @@ class Main {
                 Shop shop= new Shop();
                 Player player= new Player(scanner.nextLine(),5,5,5,100,100,new Inventory(200));
                 Dragon dragon= new Dragon(3,"red");
+                inventory = new Inventory(12, 4);
                 Game game = new Game(player,dragon);
                 System.out.println("Brave " + player.getName() + " proceed to choose");
                 while(choose_destination)
@@ -34,6 +36,7 @@ class Main {
                     else if(a.equals("3"))
                     {
                         System.out.println("Welcome to inventory " + player.getName() + " proceed to choose");
+                        inventory.display();
                         choose_destination = false;
                     }
                     else if(a.equals("4"))

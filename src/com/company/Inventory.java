@@ -1,19 +1,91 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class Inventory {
-    private ArrayList<Item> items;
+
+    List<String> weapons = List.of(
+            "Sword of Destiny",
+            "Ethereal Bow",
+            "Staff of Arcane Power",
+            "Dragon's Fang",
+            "Elven Blade",
+            "Thunderstrike Mace",
+            "Dagger of Shadows",
+            "Celestial Lance",
+            "Phoenix Wing Bow",
+            "Golem Hammer",
+            "Scepter of the Elements",
+            "Vorpal Rapier",
+            "Frostbite Axe",
+            "Wand of Illusions",
+            "Soul Reaver",
+            "Aegis Shield",
+            "Blade of Eternal Light",
+            "Whispering Dagger",
+            "Mjolnir, the Thunder Hammer",
+            "Shardblade"
+    );
+    List<String> shields = List.of(
+            "Aegis Shield",
+            "Guardian's Bulwark",
+            "Shield of Reflection",
+            "Crystal Barrier",
+            "Dragon Scale Shield",
+            "Ancient Ward",
+            "Divine Protector",
+            "Shadowguard",
+            "Titanium Tower Shield",
+            "Embersteel Shield"
+    );
+
+    List<String> potions = List.of(
+            "Potion of Healing",
+            "Elixir of Strength",
+            "Draught of Invisibility",
+            "Potion of Elemental Resistance",
+            "Potion of Speed",
+            "Elixir of Wisdom",
+            "Potion of Fire Breath",
+            "Potion of Levitation",
+            "Potion of Luck",
+            "Elixir of Vitality"
+    );
+
+    private HashMap<String,Item> items;
     private int capacity;
 
     public Inventory(int capacity) {
         this.capacity = capacity;
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
+    }
+
+    /**
+     * Constructor takes a player level and populates his inventory
+     * with items
+     * @param capacity Storage capacity of inventory
+     * @param player_level level of the player
+     */
+    public Inventory(int capacity, int player_level) {
+        this.capacity = capacity;
+        this.items = new HashMap<>();
+        List<List> all_types = List.of(weapons,shields,potions);
+        Random random = new Random();
+        int radomindex = random.nextInt(all_types.size());
+        List<String> selectedList = all_types.get(radomindex);
+        for (int i = 0; i < capacity ; i++)
+        {
+            Item anitem = new Item(selectedList.get(random.nextInt(selectedList.size())),"weapon",10,player_level,200);
+            items.put(anitem.getName(),anitem);
+        }
     }
 
     public void addItem(Item item) {
         if (items.size() < capacity) {
-            items.add(item);
+            items.put(item.getName(),item);
             System.out.println(item.getName() + " added to the inventory.");
         } else {
             System.out.println("Inventory is full. Cannot add " + item.getName());
@@ -25,8 +97,9 @@ public class Inventory {
             System.out.println("Inventory is empty.");
         } else {
             System.out.println("Inventory:");
-            for (Item item : items) {
-                System.out.println("- " + item.getName());
+            for (Item item : items.values()
+                 ) {
+                System.out.println("Item=" + item.getName() + " level=" + item.getLevel() + " type=" + item.getType() + " effect:" + item.getEffect());
             }
         }
     }
@@ -52,6 +125,8 @@ public class Inventory {
     public Potion selectPotion() {
         return selectPotion();
     }
+
+
 }
 
 
