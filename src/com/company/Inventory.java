@@ -29,7 +29,7 @@ public class Inventory {
             "Mjolnir, the Thunder Hammer",
             "Shardblade"
     );
-    List<String> shields = List.of(
+    List<String> armor = List.of(
             "Aegis Shield",
             "Guardian's Bulwark",
             "Shield of Reflection",
@@ -72,13 +72,26 @@ public class Inventory {
     public Inventory(int capacity, int player_level) {
         this.capacity = capacity;
         this.items = new HashMap<>();
-        List<List> all_types = List.of(weapons,shields,potions);
-        Random random = new Random();
-        int radomindex = random.nextInt(all_types.size());
-        List<String> selectedList = all_types.get(radomindex);
+        List<List> all_types = List.of(weapons,armor,potions);
         for (int i = 0; i < capacity ; i++)
         {
-            Item anitem = new Item(selectedList.get(random.nextInt(selectedList.size())),"weapon",10,player_level,200);
+            Random random = new Random();
+            int radomindex = random.nextInt(all_types.size());
+            List<String> selectedList = all_types.get(radomindex);
+            String weapon_type;
+            if( radomindex == 0)
+            {
+                weapon_type = "weapons";
+            }
+           else if( radomindex == 1)
+            {
+                weapon_type = "armor";
+            }
+           else{
+                weapon_type = "portion";
+            }
+            Item anitem = new Item(selectedList.get(random.nextInt(selectedList.size())),weapon_type,10,player_level,200);
+            anitem.setEquiped(false);
             items.put(anitem.getName(),anitem);
         }
     }

@@ -37,6 +37,8 @@ class Main {
                     {
                         System.out.println("Welcome to inventory " + player.getName() + " proceed to choose");
                         inventory.display();
+                        System.out.println(" 1)Enter item name to equip\n 2)Exit");
+                        String Choice = scanner.nextLine();
                         choose_destination = false;
                     }
                     else if(a.equals("4"))

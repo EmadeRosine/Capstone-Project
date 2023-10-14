@@ -7,7 +7,6 @@ public class Item{
     private String type; // weapon, armor, potion, etc.
     private int effect; // damage bonus or health restore
     private int level;
-
     private  int price;
 
     public Item(String name, String type, int effect, int level, int price) {
@@ -15,6 +14,36 @@ public class Item{
         this.type = type;
         this.effect = effect;
         this.level = level;
+        this.price = price;
+    }
+
+    private boolean equiped;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setEffect(int effect) {
+        this.effect = effect;
+    }
+
+    public boolean isEquiped() {
+        return equiped;
+    }
+
+    public void setEquiped(boolean equiped) {
+        this.equiped = equiped;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
         this.price = price;
     }
 

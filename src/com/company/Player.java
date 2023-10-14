@@ -1,6 +1,9 @@
 package com.company;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Player {
     private String name;
     private int attack;
@@ -8,6 +11,7 @@ public class Player {
     private int health;
     private int goldCoins;
     private int experiencePoints;
+    private HashMap<String,Item> Equiped_item = new HashMap<>();
     Inventory inventory;
 
     public Player(String name, int attack, int defense, int health, int goldCoins, int experiencePoints,Inventory inventory) {
@@ -46,8 +50,30 @@ public class Player {
     }
 
     private int calculatePlayerDamage() {
-        // Logic to calculate player damage based on attack, weapon, etc.
-        return attack + inventory.getTotalWeaponDamage();
+        for (Item equippedItem : Equiped_item.values())
+        {
+            if(equippedItem.getType().equals("weapon"))
+            {
+                attack = attack + equippedItem.getEffect();
+            }
+        }
+        return attack;
+    }
+
+    private int calculatePlayerDefense() {
+        for (Item equippedItem : Equiped_item.values())
+        {
+            if(equippedItem.getType().equals("amor"))
+            {
+                attack = attack + equippedItem.getEffect();
+            }
+        }
+        return attack;
+    }
+
+    public void equip_equipment(String item_name)
+    {
+
     }
 
     public int getGold() {
@@ -74,5 +100,60 @@ public class Player {
         return name;
     }
 
-    // Other getters and setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getGoldCoins() {
+        return goldCoins;
+    }
+
+    public void setGoldCoins(int goldCoins) {
+        this.goldCoins = goldCoins;
+    }
+
+    public int getExperiencePoints() {
+        return experiencePoints;
+    }
+
+    public void setExperiencePoints(int experiencePoints) {
+        this.experiencePoints = experiencePoints;
+    }
+
+    public HashMap<String, Item> getEquiped_item() {
+        return Equiped_item;
+    }
+
+    public void setEquiped_item(HashMap<String, Item> equiped_item) {
+        Equiped_item = equiped_item;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+// Other getters and setters
 }
